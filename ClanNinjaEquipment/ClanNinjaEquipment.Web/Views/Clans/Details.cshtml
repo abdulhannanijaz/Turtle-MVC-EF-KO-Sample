@@ -1,0 +1,36 @@
+﻿@model ClanNinjaEquipment.Web.ViewModels.ClanViewModel
+@using System.Web.Script.Serialization
+@using System.Activities.Expressions
+
+@{
+    ViewBag.Title = "Clan View Model Details";
+}
+
+<!---TO serialize the data-->
+@{ string serializeddata = new JavaScriptSerializer().Serialize(Model); }
+
+
+<!---To attach the scripts-->
+@section Scripts
+{
+<script src="~/Scripts/knockout-3.4.0.js"></script>
+<script src="~/Scripts/knockout.mapping-latest.js"></script>
+<script src="~/Scripts/ClanViewModel.js"></script>
+    <script type="text/javascript">
+        var ClanViewModel = new ClanViewModelResult(@Html.Raw(serializeddata));
+        ko.applyBindings(ClanViewModel);
+    </script>
+
+
+}
+
+
+<div class="jumbotron">
+    <h1 data-bind="text: Name"></h1>
+    <label> Clan Symbol</label>
+    <span data-bind="text: SymbolPic"></span>
+</div>
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

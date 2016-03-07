@@ -1,0 +1,873 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TurtleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Clan">
+          <Key>
+            <PropertyRef Name="ClanID" />
+          </Key>
+          <Property Name="ClanID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="SymbolPic" Type="nvarchar" MaxLength="255" />
+          <Property Name="IsEvil" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CreatedOn" Type="datetime2" Precision="7" />
+          <Property Name="CreatedBy" Type="bigint" />
+          <Property Name="ClanGUID" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="EquipmentID" />
+          </Key>
+          <Property Name="EquipmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="CreatedOn" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="First" Type="nvarchar(max)" />
+          <Property Name="Last" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Ninja">
+          <Key>
+            <PropertyRef Name="NinjaID" />
+          </Key>
+          <Property Name="NinjaID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClanID" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Age" Type="int" />
+          <Property Name="Picture" Type="nvarchar" MaxLength="255" />
+          <Property Name="CreatedOn" Type="datetime2" Precision="7" />
+          <Property Name="CreatedBy" Type="bigint" />
+          <Property Name="IsExperienced" Type="bit" />
+          <Property Name="IsAlive" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="NinjaGUID" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="NinjaEquipment">
+          <Key>
+            <PropertyRef Name="NinjaEquipmentID" />
+          </Key>
+          <Property Name="NinjaEquipmentID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EquipmentID" Type="int" />
+          <Property Name="NinjaID" Type="bigint" />
+          <Property Name="Picture" Type="nvarchar" MaxLength="255" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="IsSpecial" Type="bit" />
+          <Property Name="CreatedBy" Type="bigint" />
+          <Property Name="CreatedOn" Type="datetime2" Precision="7" />
+          <Property Name="NinjaEquipmentGUID" Type="uniqueidentifier" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ninja_Clan">
+          <End Role="Clan" Type="Self.Clan" Multiplicity="0..1" />
+          <End Role="Ninja" Type="Self.Ninja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clan">
+              <PropertyRef Name="ClanID" />
+            </Principal>
+            <Dependent Role="Ninja">
+              <PropertyRef Name="ClanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NinjaEquipment_Equipment">
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="0..1" />
+          <End Role="NinjaEquipment" Type="Self.NinjaEquipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment">
+              <PropertyRef Name="EquipmentID" />
+            </Principal>
+            <Dependent Role="NinjaEquipment">
+              <PropertyRef Name="EquipmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NinjaEquipment_Ninja">
+          <End Role="Ninja" Type="Self.Ninja" Multiplicity="0..1" />
+          <End Role="NinjaEquipment" Type="Self.NinjaEquipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ninja">
+              <PropertyRef Name="NinjaID" />
+            </Principal>
+            <Dependent Role="NinjaEquipment">
+              <PropertyRef Name="NinjaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="uspClanCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Clan" />
+        <Function Name="uspClanDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Clan">
+          <Parameter Name="ClanGUID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspClanInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Clan">
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="SymbolPic" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsEvil" Type="bit" Mode="In" />
+          <Parameter Name="CreatedBy" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="uspClanList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Clan" />
+        <Function Name="uspClanSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Clan">
+          <Parameter Name="ClanGUID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspClanUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Clan">
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="SymbolPic" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsEvil" Type="bit" Mode="In" />
+          <Parameter Name="CreatedBy" Type="bigint" Mode="In" />
+          <Parameter Name="ClanGUID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspNinjaCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Ninja" />
+        <Function Name="uspNinjaDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Ninja">
+          <Parameter Name="NinjaGUID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspNinjaInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Ninja">
+          <Parameter Name="ClanID" Type="int" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Age" Type="int" Mode="In" />
+          <Parameter Name="Picture" Type="nvarchar" Mode="In" />
+          <Parameter Name="CreatedBy" Type="bigint" Mode="In" />
+          <Parameter Name="IsExperienced" Type="bit" Mode="In" />
+          <Parameter Name="IsAlive" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="uspNinjaList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Ninja">
+          <Parameter Name="Offset" Type="int" Mode="In" />
+          <Parameter Name="Rows" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspNinjaSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Ninja">
+          <Parameter Name="NinjaGUID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspNinjaUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Ninja">
+          <Parameter Name="ClanID" Type="int" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Age" Type="int" Mode="In" />
+          <Parameter Name="Picture" Type="nvarchar" Mode="In" />
+          <Parameter Name="CreatedBy" Type="bigint" Mode="In" />
+          <Parameter Name="IsExperienced" Type="bit" Mode="In" />
+          <Parameter Name="IsAlive" Type="bit" Mode="In" />
+          <Parameter Name="IsDeleted" Type="bit" Mode="In" />
+          <Parameter Name="NinjaGUID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <EntityContainer Name="TurtleModelStoreContainer">
+          <EntitySet Name="Clan" EntityType="Self.Clan" Schema="Clan" store:Type="Tables" />
+          <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="CNF" store:Type="Tables" />
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ninja" EntityType="Self.Ninja" Schema="Ninja" store:Type="Tables" />
+          <EntitySet Name="NinjaEquipment" EntityType="Self.NinjaEquipment" Schema="Ninja" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ninja_Clan" Association="Self.FK_Ninja_Clan">
+            <End Role="Clan" EntitySet="Clan" />
+            <End Role="Ninja" EntitySet="Ninja" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NinjaEquipment_Equipment" Association="Self.FK_NinjaEquipment_Equipment">
+            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="NinjaEquipment" EntitySet="NinjaEquipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NinjaEquipment_Ninja" Association="Self.FK_NinjaEquipment_Ninja">
+            <End Role="Ninja" EntitySet="Ninja" />
+            <End Role="NinjaEquipment" EntitySet="NinjaEquipment" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TurtleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Clan">
+          <Key>
+            <PropertyRef Name="ClanID" />
+          </Key>
+          <Property Name="ClanID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SymbolPic" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IsEvil" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="7" />
+          <Property Name="CreatedBy" Type="Int64" />
+          <Property Name="ClanGUID" Type="Guid" />
+          <NavigationProperty Name="Ninja" Relationship="Self.FK_Ninja_Clan" FromRole="Clan" ToRole="Ninja" />
+        </EntityType>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="EquipmentID" />
+          </Key>
+          <Property Name="EquipmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="NinjaEquipment" Relationship="Self.FK_NinjaEquipment_Equipment" FromRole="Equipment" ToRole="NinjaEquipment" />
+        </EntityType>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="First" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Last" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Ninja">
+          <Key>
+            <PropertyRef Name="NinjaID" />
+          </Key>
+          <Property Name="NinjaID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClanID" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="Picture" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="7" />
+          <Property Name="CreatedBy" Type="Int64" />
+          <Property Name="IsExperienced" Type="Boolean" />
+          <Property Name="IsAlive" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="NinjaGUID" Type="Guid" />
+          <NavigationProperty Name="Clan" Relationship="Self.FK_Ninja_Clan" FromRole="Ninja" ToRole="Clan" />
+          <NavigationProperty Name="NinjaEquipment" Relationship="Self.FK_NinjaEquipment_Ninja" FromRole="Ninja" ToRole="NinjaEquipment" />
+        </EntityType>
+        <EntityType Name="NinjaEquipment">
+          <Key>
+            <PropertyRef Name="NinjaEquipmentID" />
+          </Key>
+          <Property Name="NinjaEquipmentID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EquipmentID" Type="Int32" />
+          <Property Name="NinjaID" Type="Int64" />
+          <Property Name="Picture" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="IsSpecial" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int64" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="7" />
+          <Property Name="NinjaEquipmentGUID" Type="Guid" />
+          <NavigationProperty Name="Equipment" Relationship="Self.FK_NinjaEquipment_Equipment" FromRole="NinjaEquipment" ToRole="Equipment" />
+          <NavigationProperty Name="Ninja" Relationship="Self.FK_NinjaEquipment_Ninja" FromRole="NinjaEquipment" ToRole="Ninja" />
+        </EntityType>
+        <Association Name="FK_Ninja_Clan">
+          <End Role="Clan" Type="Self.Clan" Multiplicity="0..1" />
+          <End Role="Ninja" Type="Self.Ninja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clan">
+              <PropertyRef Name="ClanID" />
+            </Principal>
+            <Dependent Role="Ninja">
+              <PropertyRef Name="ClanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NinjaEquipment_Equipment">
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="0..1" />
+          <End Role="NinjaEquipment" Type="Self.NinjaEquipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment">
+              <PropertyRef Name="EquipmentID" />
+            </Principal>
+            <Dependent Role="NinjaEquipment">
+              <PropertyRef Name="EquipmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NinjaEquipment_Ninja">
+          <End Role="Ninja" Type="Self.Ninja" Multiplicity="0..1" />
+          <End Role="NinjaEquipment" Type="Self.NinjaEquipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ninja">
+              <PropertyRef Name="NinjaID" />
+            </Principal>
+            <Dependent Role="NinjaEquipment">
+              <PropertyRef Name="NinjaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="TurtleEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clan" EntityType="Self.Clan" />
+          <EntitySet Name="Equipment" EntityType="Self.Equipment" />
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Ninja" EntityType="Self.Ninja" />
+          <EntitySet Name="NinjaEquipment" EntityType="Self.NinjaEquipment" />
+          <AssociationSet Name="FK_Ninja_Clan" Association="Self.FK_Ninja_Clan">
+            <End Role="Clan" EntitySet="Clan" />
+            <End Role="Ninja" EntitySet="Ninja" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NinjaEquipment_Equipment" Association="Self.FK_NinjaEquipment_Equipment">
+            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="NinjaEquipment" EntitySet="NinjaEquipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NinjaEquipment_Ninja" Association="Self.FK_NinjaEquipment_Ninja">
+            <End Role="Ninja" EntitySet="Ninja" />
+            <End Role="NinjaEquipment" EntitySet="NinjaEquipment" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <FunctionImport Name="uspClanCount" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="uspClanDelete">
+            <Parameter Name="ClanGUID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspClanInsert">
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="SymbolPic" Mode="In" Type="String" />
+            <Parameter Name="IsEvil" Mode="In" Type="Boolean" />
+            <Parameter Name="CreatedBy" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="uspClanList" ReturnType="Collection(TurtleModel.uspClanList_Result)" />
+          <FunctionImport Name="uspClanSelect" ReturnType="Collection(TurtleModel.uspClanSelect_Result)">
+            <Parameter Name="ClanGUID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspClanUpdate">
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="SymbolPic" Mode="In" Type="String" />
+            <Parameter Name="IsEvil" Mode="In" Type="Boolean" />
+            <Parameter Name="CreatedBy" Mode="In" Type="Int64" />
+            <Parameter Name="ClanGUID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspNinjaCount" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="uspNinjaDelete">
+            <Parameter Name="NinjaGUID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspNinjaInsert">
+            <Parameter Name="ClanID" Mode="In" Type="Int32" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Age" Mode="In" Type="Int32" />
+            <Parameter Name="Picture" Mode="In" Type="String" />
+            <Parameter Name="CreatedBy" Mode="In" Type="Int64" />
+            <Parameter Name="IsExperienced" Mode="In" Type="Boolean" />
+            <Parameter Name="IsAlive" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="uspNinjaList" ReturnType="Collection(TurtleModel.uspNinjaList_Result)">
+            <Parameter Name="Offset" Mode="In" Type="Int32" />
+            <Parameter Name="Rows" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspNinjaSelect" ReturnType="Collection(TurtleModel.uspNinjaSelect_Result)">
+            <Parameter Name="NinjaGUID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspNinjaUpdate">
+            <Parameter Name="ClanID" Mode="In" Type="Int32" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Age" Mode="In" Type="Int32" />
+            <Parameter Name="Picture" Mode="In" Type="String" />
+            <Parameter Name="CreatedBy" Mode="In" Type="Int64" />
+            <Parameter Name="IsExperienced" Mode="In" Type="Boolean" />
+            <Parameter Name="IsAlive" Mode="In" Type="Boolean" />
+            <Parameter Name="IsDeleted" Mode="In" Type="Boolean" />
+            <Parameter Name="NinjaGUID" Mode="In" Type="Guid" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="uspClanList_Result">
+          <Property Type="Int32" Name="ClanID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="SymbolPic" Nullable="true" MaxLength="255" />
+          <Property Type="Boolean" Name="IsEvil" Nullable="true" />
+          <Property Type="Guid" Name="ClanGUID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="uspClanSelect_Result">
+          <Property Type="Int32" Name="ClanID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="SymbolPic" Nullable="true" MaxLength="255" />
+          <Property Type="Boolean" Name="IsEvil" Nullable="true" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+          <Property Type="DateTime" Name="CreatedOn" Nullable="true" />
+          <Property Type="Int64" Name="CreatedBy" Nullable="true" />
+          <Property Type="Guid" Name="ClanGUID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="uspNinjaList_Result">
+          <Property Type="Int64" Name="NinjaID" Nullable="false" />
+          <Property Type="String" Name="Clan" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="Age" Nullable="true" />
+          <Property Type="String" Name="Picture" Nullable="true" MaxLength="255" />
+          <Property Type="Boolean" Name="IsExperienced" Nullable="true" />
+          <Property Type="Boolean" Name="IsAlive" Nullable="true" />
+          <Property Type="Guid" Name="NinjaGUID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="uspNinjaSelect_Result">
+          <Property Type="Int64" Name="NinjaID" Nullable="false" />
+          <Property Type="Int32" Name="ClanID" Nullable="true" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="Age" Nullable="true" />
+          <Property Type="String" Name="Picture" Nullable="true" MaxLength="255" />
+          <Property Type="DateTime" Name="CreatedOn" Nullable="true" />
+          <Property Type="Int64" Name="CreatedBy" Nullable="true" />
+          <Property Type="Boolean" Name="IsExperienced" Nullable="true" />
+          <Property Type="Boolean" Name="IsAlive" Nullable="true" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+          <Property Type="Guid" Name="NinjaGUID" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TurtleModelStoreContainer" CdmEntityContainer="TurtleEntities">
+          <EntitySetMapping Name="Clan">
+            <EntityTypeMapping TypeName="TurtleModel.Clan">
+              <MappingFragment StoreEntitySet="Clan">
+                <ScalarProperty Name="ClanID" ColumnName="ClanID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SymbolPic" ColumnName="SymbolPic" />
+                <ScalarProperty Name="IsEvil" ColumnName="IsEvil" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ClanGUID" ColumnName="ClanGUID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipment">
+            <EntityTypeMapping TypeName="TurtleModel.Equipment">
+              <MappingFragment StoreEntitySet="Equipment">
+                <ScalarProperty Name="EquipmentID" ColumnName="EquipmentID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="TurtleModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="TurtleModel.AspNetRoles">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="TurtleModel.AspNetUserClaims">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="TurtleModel.AspNetUserLogins">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="TurtleModel.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="First" ColumnName="First" />
+                <ScalarProperty Name="Last" ColumnName="Last" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="TurtleModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ninja">
+            <EntityTypeMapping TypeName="TurtleModel.Ninja">
+              <MappingFragment StoreEntitySet="Ninja">
+                <ScalarProperty Name="NinjaID" ColumnName="NinjaID" />
+                <ScalarProperty Name="ClanID" ColumnName="ClanID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsExperienced" ColumnName="IsExperienced" />
+                <ScalarProperty Name="IsAlive" ColumnName="IsAlive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="NinjaGUID" ColumnName="NinjaGUID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NinjaEquipment">
+            <EntityTypeMapping TypeName="TurtleModel.NinjaEquipment">
+              <MappingFragment StoreEntitySet="NinjaEquipment">
+                <ScalarProperty Name="NinjaEquipmentID" ColumnName="NinjaEquipmentID" />
+                <ScalarProperty Name="EquipmentID" ColumnName="EquipmentID" />
+                <ScalarProperty Name="NinjaID" ColumnName="NinjaID" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsSpecial" ColumnName="IsSpecial" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="NinjaEquipmentGUID" ColumnName="NinjaEquipmentGUID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="TurtleModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="uspClanCount" FunctionName="TurtleModel.Store.uspClanCount" />
+          <FunctionImportMapping FunctionImportName="uspClanDelete" FunctionName="TurtleModel.Store.uspClanDelete" />
+          <FunctionImportMapping FunctionImportName="uspClanInsert" FunctionName="TurtleModel.Store.uspClanInsert" />
+          <FunctionImportMapping FunctionImportName="uspClanList" FunctionName="TurtleModel.Store.uspClanList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TurtleModel.uspClanList_Result">
+                <ScalarProperty Name="ClanID" ColumnName="ClanID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SymbolPic" ColumnName="SymbolPic" />
+                <ScalarProperty Name="IsEvil" ColumnName="IsEvil" />
+                <ScalarProperty Name="ClanGUID" ColumnName="ClanGUID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspClanSelect" FunctionName="TurtleModel.Store.uspClanSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TurtleModel.uspClanSelect_Result">
+                <ScalarProperty Name="ClanID" ColumnName="ClanID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SymbolPic" ColumnName="SymbolPic" />
+                <ScalarProperty Name="IsEvil" ColumnName="IsEvil" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ClanGUID" ColumnName="ClanGUID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspClanUpdate" FunctionName="TurtleModel.Store.uspClanUpdate" />
+          <FunctionImportMapping FunctionImportName="uspNinjaCount" FunctionName="TurtleModel.Store.uspNinjaCount" />
+          <FunctionImportMapping FunctionImportName="uspNinjaDelete" FunctionName="TurtleModel.Store.uspNinjaDelete" />
+          <FunctionImportMapping FunctionImportName="uspNinjaInsert" FunctionName="TurtleModel.Store.uspNinjaInsert" />
+          <FunctionImportMapping FunctionImportName="uspNinjaList" FunctionName="TurtleModel.Store.uspNinjaList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TurtleModel.uspNinjaList_Result">
+                <ScalarProperty Name="NinjaID" ColumnName="NinjaID" />
+                <ScalarProperty Name="Clan" ColumnName="Clan" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="IsExperienced" ColumnName="IsExperienced" />
+                <ScalarProperty Name="IsAlive" ColumnName="IsAlive" />
+                <ScalarProperty Name="NinjaGUID" ColumnName="NinjaGUID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspNinjaSelect" FunctionName="TurtleModel.Store.uspNinjaSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TurtleModel.uspNinjaSelect_Result">
+                <ScalarProperty Name="NinjaID" ColumnName="NinjaID" />
+                <ScalarProperty Name="ClanID" ColumnName="ClanID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsExperienced" ColumnName="IsExperienced" />
+                <ScalarProperty Name="IsAlive" ColumnName="IsAlive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="NinjaGUID" ColumnName="NinjaGUID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspNinjaUpdate" FunctionName="TurtleModel.Store.uspNinjaUpdate" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
