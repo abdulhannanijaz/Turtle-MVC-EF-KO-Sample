@@ -17,7 +17,7 @@
 <script src="~/Scripts/knockout.mapping-latest.js"></script>
 <script src="~/Scripts/ClanViewModel.js"></script>
     <script type="text/javascript">
-        var ClanViewModel = new ClanViewModelResult(@Html.Raw(serializeddata));
+        var ClanViewModel = new ClanViewModel(@Html.Raw(serializeddata));
         ko.applyBindings(ClanViewModel);
     </script>
 

@@ -1,92 +1,56 @@
-﻿@model ClanNinjaEquipment.DataLayer.Clan
+﻿@model ClanNinjaEquipment.Web.ViewModels.ClanViewModel
+@using System.Web.Script.Serialization
+
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Create Clan View Model";
 }
 
-<h2>Create</h2>
+<!---TO serialize the data-->
+@{ string serializeddata = new JavaScriptSerializer().Serialize(Model); }
 
 
-@using (Html.BeginForm()) 
+<!---To attach the scripts-->
+@section Scripts
 {
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Clan</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    <script src="~/Scripts/knockout-3.4.0.js"></script>
+    <script src="~/Scripts/knockout.mapping-latest.js"></script>
+    <script src="~/Scripts/ClanViewModel.js"></script>
+    <script type="text/javascript">
+        var ClanViewModel = new ClanViewModel(@Html.Raw(serializeddata));
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.SymbolPic, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SymbolPic, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SymbolPic, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        ko.applyBindings(ClanViewModel);
+    </script>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.IsEvil, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.IsEvil)
-                    @Html.ValidationMessageFor(model => model.IsEvil, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.IsDeleted, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.IsDeleted)
-                    @Html.ValidationMessageFor(model => model.IsDeleted, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CreatedOn, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CreatedOn, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CreatedOn, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CreatedBy, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CreatedBy, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CreatedBy, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ClanGUID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ClanGUID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ClanGUID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
 }
-
+<h1>
+    @ViewBag.Title
+    <small data-bind="text: MessageToClient"></small>
+    <p data-bind="text: MessageToClient"></p>
+</h1>
 <div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    <div>
+        <label for="Name" >Clan Name:</label>
+        <input  data-bind="value:Name"/>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    </div>
+    <div>
+        <label for="SymbolPic">Symbol Picture:</label>
+        <input data-bind="value:SymbolPic" type="file" />
+
+    </div>
+    <div><label for="IsEvil" class="">Clan is evil ?</label>
+        <input data-bind="value:IsEvil">
+    </div>
+
+
+
+</div>
+<p>
+    <button data-bind="click: save">Save</button>
+</p>
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
