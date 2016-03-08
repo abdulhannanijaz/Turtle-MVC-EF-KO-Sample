@@ -14,8 +14,12 @@
             contentType: "application/json",
             success: function (data)
             {
-                if (data.ClanViewModel != null)
-                    ko.mapping.fromJS(data.ClanViewModel, {}, self);
+                if (data.clanViewModel != null)
+                    ko.mapping.fromJS(data.clanViewModel, {}, self);
+            },
+            error: function (data)
+            {
+                alert("error!!");
             }
 
         });

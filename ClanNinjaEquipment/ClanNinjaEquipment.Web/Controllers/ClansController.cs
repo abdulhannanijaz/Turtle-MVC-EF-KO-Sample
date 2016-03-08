@@ -65,7 +65,16 @@ namespace ClanNinjaEquipment.Web.Controllers
             {
                 return HttpNotFound();
             }
-            return View(clan);
+            ClanViewModel ClanViewModel = new ClanViewModel();
+
+            ClanViewModel.ClanID = clan.ClanID;
+            ClanViewModel.Name = clan.Name;
+            ClanViewModel.SymbolPic = clan.SymbolPic;
+            ClanViewModel.IsEvil = clan.IsEvil;
+            ClanViewModel.MessageToClient = "ViewModel from client edit function";
+
+
+            return View(ClanViewModel);
         }
 
 
